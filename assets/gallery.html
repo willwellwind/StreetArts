@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<link rel="stylesheet" type="text/css" href="main.css">
+<link rel="stylesheet" href="animations.css">
+<link rel="stylesheet" type="text/css" href="WDCsmall.css">
+<script src="WDCsmall.js"></script>
+<script src="innercommon.js"></script>
+<script src="jquery-1.10.1.min.js"></script>
+</head>
+
+<body id = 'body'>
+<div class="container">
+	<img id = 'background' src="sun_background.svg" class="main" />
+	<div class="gallery">
+	gallery
+	</div>	
+	<div class='gallery-content scroll'>
+	<script>
+	for (var i=1; i<28; i++)
+	{ 
+		document.writeln("<a href='art_info.html?id="+i+"'><img id='img"+i+"' class='gallery-thumbnail push' src='thumbnails/i"+i+".jpg' /></a>");
+	}
+	
+	</script>
+	</div>
+	<img src= 'about_line.svg' class ='gallery-line' />
+	<img src= 'bot_dock_line.svg' class='bot-dock-top-line' />
+	<img src= 'bot_dock_line.svg' class='bot-dock-bot-line' />
+	<a href="index.html"> <img src= 'dock_home_btn.svg' class='dock-home-btn push' /> </a>
+	<a href="recommendation.html"><img src= 'dock_star_btn.svg' class='dock-star-btn push' /></a>	
+	<a href="painter.html"><img id='pallate'src= 'dock_pallate_btn.svg' class='dock-pallate-btn push' /></a>
+	<a href="#" onclick="Android.callMap()"><img id='pin'src= 'dock_pin_btn.svg' class='dock-pin-btn push' /></a>
+    <a href="about.html"><img src= 'dock_excla_btn.svg' class='dock-excla-btn push' /></a>	
+	
+
+</div>
+
+<script>
+commonReady();
+$(".push").attr("onclick", "Android.triggerSound()");
+S('pallate').left='41%';
+S('pin').left='59%';
+
+</script>
+</body>
+
+
+</html>

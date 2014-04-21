@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<link rel="stylesheet" type="text/css" href="main.css">
+<link rel="stylesheet" href="animations.css">
+<link rel="stylesheet" type="text/css" href="WDCsmall.css">
+<script src="WDCsmall.js"></script>
+<script src="innercommon.js"></script>
+<script src="jquery-1.10.1.min.js"></script>
+</head>
+<body id = 'body'>
+
+<div class="container">
+	<img id = 'background' src="sun_background.svg" class="main" />
+	<img src="mainmenuline.svg" class='main-line'/>
+	<a href="recommendation.html"><img src ="main_star.svg"  class="star push" /></a>
+
+	<img id='sun' src ="main_sun.svg" class="sun rotate" />
+	<img id='star1'src='star.svg' class='star1 pulse' />
+	<img id='star2' src='star.svg' class='star2 pulse' />
+    <img id='moon' src = "moon.svg" class="moon tossing" />
+	<img id ='cloud'src="sun_cloud.svg" class="sun-cloud" />
+	<div class="main-menu" >
+		main menu
+	</div>
+
+	<a href="gallery.html"><img id='camera' src ="camera.svg" class="main-camera push" /></a>
+	<a href="#" onclick="Android.callMap()"><img src ="pin.svg" class="main-pin push" /></a>
+	<a href="painter.html"><img src ="pallate.svg" class="main-pallate push" /></a>
+	<a href="about.html"><img src ="excla.svg" class="main-excla push" /></a>
+	<div id="clock" class = "main-clock">	
+	--:--
+	</div>
+</div>
+<script>
+$(".push").attr("onclick", "Android.triggerSound()");
+var a = new Date();
+var b = a.getHours();
+var c = a.getMinutes();
+
+
+
+if ( b<7 || b >= 19){
+O("background").src="night_background.svg";
+S('body').backgroundColor='#3c96d2';
+O("cloud").src="night_cloud.svg";
+S('cloud').left='19.6%';
+Invisible('sun');
+}
+else{
+Invisible('moon');
+Invisible('star1');
+Invisible('star2');
+Invisible('star2');
+}
+var myVar=setInterval(function(){setTime()},1000);
+
+function setTime(){
+var d = new Date();
+var h = d.getHours();
+var n = d.getMinutes();
+if ( h < 10)
+{
+	h='0'+h;
+}
+
+if ( n < 10)
+{
+	n = '0'+n;
+}
+x = document.getElementById("clock");
+x.innerHTML = h+":"+n;
+}
+</script>
+
+</body>
+</html>

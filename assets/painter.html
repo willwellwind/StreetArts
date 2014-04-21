@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<link rel="stylesheet" type="text/css" href="main.css">
+<link rel="stylesheet" href="animations.css">
+<link rel="stylesheet" type="text/css" href="WDCsmall.css">
+<script src="WDCsmall.js"></script>
+<script src="innercommon.js"></script>
+<script src="jquery-1.10.1.min.js"></script>
+</head>
+
+<body id = 'body'>
+<div class="container">
+	<img id = 'background' src="sun_background.svg" class="main" />
+	<div class="painter-profile">
+	painter's profile
+	</div>	
+	<div class='painter-profile-content'>
+	<div class="ernest">
+	<a href="painter_detail.html?painter=ernest&back=99" >ernest zacharevic</a>
+	</div>	
+	<div class="louis">
+	<a href="painter_detail.html?painter=louis&back=99" >louis gan</a>
+	</div>	
+	<div class="wall-team">
+	<a href="painter_detail.html?painter=wall&back=99" >wall team art</a>
+	</div>	
+	<div class="artists">
+	<a href="painter_detail.html?painter=artists&back=99" >artists for stray animal</a>
+	</div>	
+	</div>
+	<img src= 'about_line.svg' class ='gallery-line' />
+	<img src= 'bot_dock_line.svg' class='bot-dock-top-line' />
+	<img src= 'bot_dock_line.svg' class='bot-dock-bot-line' />
+	<a href="index.html"> <img src= 'dock_home_btn.svg' class='dock-home-btn push' /> </a>
+	<a href="recommendation.html"><img src= 'dock_star_btn.svg' class='dock-star-btn push' /></a>	
+	<a href="gallery.html"><img id='dock-camera' src= 'dock_camera_btn.svg' class='dock-camera-btn push' /></a>
+	<a href="#" onclick="Android.callMap()"><img id='pin'src= 'dock_pin_btn.svg' class='dock-pin-btn push' /></a>
+    <a href="about.html"><img src= 'dock_excla_btn.svg' class='dock-excla-btn push' /></a>	
+	<img src='painter_line.svg' class='painter-line1' />
+	<img src='painter_line.svg' class='painter-line2' />	
+	<img src='painter_line.svg' class='painter-line3' />
+	
+</div>
+
+<script>
+commonReady();
+ $(".push").attr("onclick", "Android.triggerSound()");
+S('pin').left='59%';
+
+</script>
+</body>
+
+
+</html>

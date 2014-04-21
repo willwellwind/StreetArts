@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<link rel="stylesheet" type="text/css" href="main.css">
+<link rel="stylesheet" href="animations.css">
+<link rel="stylesheet" type="text/css" href="WDCsmall.css">
+<script src="WDCsmall.js"></script>
+<script src="jquery-1.10.1.min.js"></script>
+</head>
+
+<body id = 'body'>
+<div class="container">
+		<img id = 'background' src="sun_background.svg" class="main" />
+	<img  src ="big_bubble.svg" class="info-bubble" />
+	<img src=  "bot_dock_line.svg" class='bot-dock-top-line' />
+	<img src= "bot_dock_line.svg" class='bot-dock-bot-line' />
+	<div class="about-us">
+	about us
+	</div>
+	<img src= 'about_line.svg' class ='about-line' />
+	<div class='welcome-text'>
+	Welcome to penang street's art
+	</div>
+	<img src= 'bot_dock_line.svg' class='bot-dock-top-line' />
+	<img src= 'bot_dock_line.svg' class='bot-dock-bot-line' />
+	<a href="index.html"> <img src= 'dock_home_btn.svg' class='dock-home-btn push' /> </a>
+	<a href="recommendation.html"><img src= 'dock_star_btn.svg' class='dock-star-btn push' /></a>
+	<a href="gallery.html"><img id='dock-camera' src= 'dock_camera_btn.svg' class='dock-camera-btn push' /></a>
+	<a href="painter.html"><img src= 'dock_pallate_btn.svg' class='dock-pallate-btn push' /></a>
+	<a href="#" onclick="Android.callMap()"><img src= 'dock_pin_btn.svg' class='dock-pin-btn push' /></a>
+</div>
+
+<script>
+    $(".push").attr("onclick", "Android.triggerSound()");
+var a = new Date();
+var b = a.getHours();
+var c = a.getMinutes();
+if ( b<7 || b >= 19){
+O("background").src="night_background.svg";
+S('body').backgroundColor='#3c96d2';
+}
+
+
+</script>
+</body>
+
+
+</html>

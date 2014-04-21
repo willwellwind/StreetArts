@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<link rel="stylesheet" type="text/css" href="main.css">
+<link rel="stylesheet" href="animations.css">
+<link rel="stylesheet" type="text/css" href="WDCsmall.css">
+<script src="WDCsmall.js"></script>
+<script src="innercommon.js"></script>
+<script src="jquery-1.10.1.min.js"></script>
+<script src="jquery.touchSwipe.js"></script>
+</head>
+
+<body id = 'body'>
+<div class="container">
+	<img id = 'background' src="sun_background.svg" class="main" />
+	<div class="street-art-info">
+	street's art info
+	</div>	
+
+	<script>
+		var id =getQueryVariable('id');
+		document.writeln("<img id='image' src = 'images/"+id+".jpg' class='full-image' />");
+	</script>
+
+	<div class = "art-content">
+	<div id = 'art-title' class = "art-bold-text">
+
+	</div>
+	<div id = 'art-body' class = "art-info-detail">
+	
+	</div>
+	</div>
+	<img src= 'about_line.svg' class ='gallery-line' />
+	<img id='l1' src='art_info_line.svg' class ='art-info-line1'/>
+	<img id='l2' src='art_info_line.svg' class ='art-info-line2'/>
+	<img id='back_button'  src="back_btn_day.svg" class = 'art-info-back push' />
+	<a href='#' onclick="Android.callMap()"><img id='map_button' src="map_btn_day.svg" class = 'art-info-map push' /></a>
+	<a id ="painter-btn" href='painter.html'><img id='pallate_button' src="pallate_btn_day.svg" class = 'art-info-pallate push' /></a>
+	
+</div>
+
+
+
+</body>
+<script>
+
+window.onerror = function(msg, url, linenumber) {
+        alert('Error message: '+msg+'\nURL: '+url+'\nLine Number: '+linenumber);
+        return true;
+    }
+var swipe = true;	
+$(".push").attr("onclick", "Android.triggerSound()");
+var qs ="";
+setPainter();
+
+$("#back_button").click(function(){  
+	parent.history.back();
+});
+
+	id = parseInt(id);
+function setPainter(){
+
+	if ( id ==1 || id == 2 || id == 3 || id == 15 || id == 19){
+	qs="painter_detail.html?painter=ernest&back="+id;
+	}
+	else if(id == 11 || id == 18 || id == 27)
+	qs="painter_detail.html?painter=louis&back="+id;
+	else if(id == 6 || id == 5 || id==7 || id == 8 || id == 16 || id == 9 || id == 12 || id == 10 || id == 20 || id == 21 || id == 24 || id == 26)
+	qs="painter_detail.html?painter=artists&back="+id;
+	else
+	qs='';
+	
+	if (qs != ""){
+	$("#painter-btn").attr("href", qs);
+	$("#painter-btn").removeAttr("onclick");
+	}
+	else{
+	$("#painter-btn").attr("href", "#");
+	$("#painter-btn").attr("onclick", "Android.artistUnknown()");
+	}
+
+	
+}
+
+
+	var a = new Date();
+	var b = a.getHours();
+
+if ( b<7 || b >= 19){
+O("background").src="night_background.svg";
+S('body').backgroundColor='#3c96d2';
+O('l1').src='art_info_line_night.svg';
+O('l2').src='art_info_line_night.svg';
+O('back_button').src="back_btn_night.svg";
+O('map_button').src="map_btn_night.svg";
+O('pallate_button').src="pallate_btn_night.svg";
+}
+$(function() {
+  Android.getArt();
+});
+
+
+function setArt(ac){
+	var old_id = id;
+	id=parseInt(ac);
+	
+	if (id >=1 && id <= 27){
+		if ( id > old_id ){
+		OS(id, 'left');
+		}
+		else
+		OS(id, 'right');
+
+	}
+}
+
+function bindss(){
+$("#image").swipe( {
+        //Generic swipe handler for all directions
+        swipeLeft:function(event, direction, distance, duration, fingerCount) {		
+		  if ( id <27  && swipe){
+		  id=id+1;
+          OS(id,'left');
+		  setPainter();
+		  }
+					
+        },
+		
+		 swipeRight:function(event, direction, distance, duration, fingerCount) {
+		  if ( id > 1 && swipe){
+		  id=id-1;
+          OS(id, 'right');
+		  setPainter();
+		  }
+				
+        }
+		});
+}
+bindss();
+
+
+function getTitle(id){
+		id = parseInt(id);
+		
+		if (id == 1)
+		$("#art-title").html('Kids On a Bicycle');
+		else if (id == 2)
+		$("#art-title").html('Reaching Up');
+		else if (id == 3)
+		$("#art-title").html('Boy on a Bike');
+		else if (id == 5)
+		$("#art-title").html('The Bruce Lee Cat Mural');
+		else if (id == 6)
+		$("#art-title").html('Skippy come to Penang');
+		else if (id == 7)
+		$("#art-title").html('Giant Rat Mural');		
+		else if (id == 8)
+		$("#art-title").html('The 102nd Cat Mural');		
+		else if (id == 9)
+		$("#art-title").html('Please Care & Bathe Me');
+		else if (id == 10)
+		$("#art-title").html('Cat Walking for Animal Awareness');
+		else if (id == 11)
+		$("#art-title").html('Children Playing Basketball');
+		else if (id == 12)
+		$("#art-title").html('I Can Help Catch Rats');	
+		else if (id == 13)
+		$("#art-title").html('The Pau Seller');
+		else if (id == 14)
+		$("#art-title").html('I want Pau!');	
+		else if (id == 15)
+		$("#art-title").html('Little Girl in Blue');		
+		else if (id == 16)
+		$("#art-title").html('Fortune Cat');	
+		else if (id == 17)
+		$("#art-title").html('Kung fu Minion');	
+		else if (id == 18)
+		$("#art-title").html('Brother & Sister on Swing');
+		else if (id == 19)
+		$("#art-title").html('The Awaiting Trishaw Pedaler');		
+		else if (id == 20)
+		$("#art-title").html('Shade Me If You Love Me');	
+		else if (id == 21)
+		$("#art-title").html('Mama Cat');
+		else if (id == 22)
+		$("#art-title").html('Wo Ai Nee, Chinese Malay Indian');
+		else if (id == 23)
+		$("#art-title").html('Little Blue Kitty');
+		else if (id == 24)
+		$("#art-title").html('No Animal Discrimination Please');
+		else if (id == 25)
+		$("#art-title").html('Children at Play');		
+		else if (id == 26)
+		$("#art-title").html('Cats & Humans happily living together');
+		else if (id == 27)
+		$("#art-title").html('Nostalgic Meal Order');
+		else 
+		$("#art-title").html('NOT AVAILABLE');
+}
+
+function getBody(id){
+		id = parseInt(id);
+		
+		if (id == 1)
+		$("#art-body").html('A mural painting on the wall of a shophouse on Armenian Street, George Town. It is one of the two murals along that street painted by London-trained artist Ernest Zacharevic, in conjunction with the 2012 George Town Festival. It depicts a little girl taking her younger brother on a bicycle ride. The joy in their faces echoes down the street, providing a ray of cheer and adding character to Armenian Street.');
+		else if (id == 2)
+		$("#art-body").html('A mural painted on a wall along Cannon Street, George Town. It is located across the street from the Anak-Anak Kota clubhouse, and within a short walking distance to Khoo Kongsi and the Acheen Street Mosque.<br><br>&#34Reaching Up&#34 depicts a little boy reaching for a hole in the wall. He appears to be standing on a chair and inching himself as high as he could reach. The painting was created by Ernest Zacharevic in conjunction with the 2012 George Town Festival. ');
+		else if (id == 3)
+		$("#art-body").html('A mural on the wall along Ah Quee Street, in George Town, Penang. The painting is the work of Lithuanian born artist Ernest Zacharevic, who was commission by the Penang Island Municipal Council (MPPP) in conjunction with the 2012 George Town Festival.');
+		else if (id == 5)
+		$("#art-body").html('The Bruce Lee Cat Mural, or called The Real Bruce Lee Would Never Do This, is the third of twelve cat murals painted by ASA, Artists for Stray Animals, for the 101 Lost Kittens project. It shows two stray cats being delivered a kick from the kungfu legend, one of which was sent flying.<br><br>The mural was not intended for people to emulate, but rather to remind the public to treat the stray cats well. A notice is placed under it stating its title that the real Bruce Lee never did this to cats.')
+		else if (id == 6)
+		$("#art-body").html('"Skippy", or in full, "Skippy Comes to Penang", and often called simply as the Giant Cat Mural, is one of 12 murals depicting cats and dogs that will grace the walls of George Town in conjunction with George Town Festival 2013. The mural is a project called 101 Lost Kittens, the work of a group of artists which calls themselves ASA, or Artists for Stray Animals. As it is not expected to be a permanent piece of art, visitors wanting a glimpse of it should pay it a visit while it is still fresh.');
+		else if (id == 7)
+		$("#art-body").html('The Giant Rat Mural is an accompanying artwork to the Giant Cat Mural along Armenian Street Ghaut, in George Town, Penang. This rat mural was created by an anonymous artist.<br><br>The Giant Rat Mural depicts a giant rat, not unlike Remy from Ratatoille. He appears to be hiding around the corner, away from the pussy cat on the adjoining wall. Both can be viewed together as one, showing that the two are almost eyeing each other.');		
+		else if (id == 8)
+		$("#art-body").html('The 102nd Cat Mural is an additional cat mural that was added to the streets of George Town, Penang. It was Completed on 5 July, 2013, it graces a wall along Armenian Street Ghaut, across the road from the Skippy mural and a short distance from the Fortune Cat mural.<br><br>The 102nd Cat Mural mural is painted on the wall in front of a bicycle-rental shop. The only blue cat mural, it serves as a postscript to the 101 Lost Kittens project. ');		
+		else if (id == 9)
+		$("#art-body").html('Please Care & Bathe Me is the fourth mural painted by the ASA (Artists for Stray Animals) team for the 101 Lost Kittens project. It show two rather bushy kittens, looking pensive, as they started out of a line-design tube. The mural is painted on a yellow wall.');
+		else if (id == 10)
+		$("#art-body").html('Cats Walking For Animal Awareness is a mural painted by ASA, Artists for Stray Animals. It depicts a parade of cat silhouettes along the wall of the Beach Street Fire Station. The cats appear in profile along the whole stretch of backlane from Beach Street until Victoria Street.<br /> <br />The "Cats Walking For Animal Awareness" mural is the 8th of 11 murals created for the 101 Lost Kittens project, to generate greater awareness of stray animals. ');
+		else if (id == 11)
+		$("#art-body").html('Children Playing Basketball is the second street mural painted by deaf-and-mute artist Louis Gan. It graces the wall of the Kwong Wah Yit Poh warehouse along Chulia Street Ghaut.<br /><br />The Children Playing Basketball mural was completed just a few days after Gan did his first mural, Brother & Sister on a Swing. Unlike the first mural, this one was not as well received. Haste and sloppiness are apparent in this piece. The girl seems to be levitating, like she\'s on helium, while the boy is way out of proportion.');
+		else if (id == 12)
+		$("#art-body").html('I Can Help Catch Rats is the 10th of eleven pieces of art created for the 101 Lost Kittens project. The mural is painted on the wall of an alleyway, by a group of artists calling themselves ASA (Artists for Stray Animals).<br /><br />"I Can Help Catch Rats" mural depicts a cat prancing after a rat. It is painted in three primary colours which are yellow, red and blue. The cat and rat occupying the red circle. The mural is intended to generate a desire among the locals to keep cats as pets, as they bring along the benefit of keeping down household rodents.');		
+		else if (id == 13)
+		$("#art-body").html('The Pau Seller Mural is a wall mural at Leith Street, George Town. It graces the wall of the Great Shanghai Dry Cleaning, at 52 Leith Street. The mural depicts an elderly pau seller. Based on the price on display - 40&cent and 20&cent, the mural must be reminiscing a time long past, as such prices are but a foggy memory today.<br /><br />The Pau Seller Mural celebrates a boutique hotel occupying Great Shanghai Dry Cleaning. The mural was created in mid July 2013 and was completed in early August.');
+		else if (id == 14)
+		$("#art-body").html('"I Want Pau!" is a mural on a wall in Armenian Street Ghaut, in George Town, Penang. It shows two children stretching their hands from inside a window towards a parked bicycle carrying a stack of rattan stays.<br /><br />The "I Want Pau" Mural located at the side wall of the Ming Xiang Tai Pastry Shop, acting possibly as an artistic billboard for the business within.');
+		else if (id == 15)
+		$("#art-body").html('Little Girl in Blue is a giant mural on the wall on Muntri Street, facing the compound of the Penang Goldsmith Association. The mural is painted by Lithuania-born artist Ernest Zacharevic. It was painting as part of the street art for the 2012 George Town Festival. ');		
+		else if (id == 16)
+		$("#art-body").html('Fortune Cat is the second of twelve cat murals under the 101 Lost Kittens project. Officially called "Love Me Like Your Fortune Cat", it was painted by the team of artists calling themselves ASA, or Artists for Stray Animals.<br><br>The Fortune Cat Mural depicts a cat gazing at a group of "fortune cats", perhaps pondering why they have better luck than him. Fortune cats are cat dolls are often found in Japanese or Taiwanese restaurants, particularly near the cash register, beckoning patrons into the shop. They are believed by shopkeepers to bring good business.');		
+		else if (id == 17)
+		$("#art-body").html('A mural which location just nearby the "Brother and Sister Swing" mural ');
+		else if (id == 18)
+		$("#art-body").html('"Brother and Sister on a Swing" is a mural by deaf-mute artist Louis Gan. It was painted at wall of the printing warehouse in an alleyway off Chulia Street Ghaut.<br /><br />Brother and Sister on a Swing depictsa boy and a girl standing on a swing. The subjects are the children of the proprietor of the printing firm, SBS Paper Products. The printing firm had already installed a swing set and even created a street sign called "Step by Step Lane" on the otherwise nameless back alley.');
+		else if (id == 19)
+		$("#art-body").html('The Awaiting Trishaw Pedaler is a giant mural that graces the wall of a building. The mural depicts an elder trishaw paddler sitting in his vehicle, probably waiting for customers. It is a fitting tribute to the trishaw paddlers who congregate at the trishaw station across the road, in front of the St Francis Xavier Church.<br><br>The Awaiting Trishaw Pedaler mural was painted by Lithuanian artist Ernest Zacharevic, as part of the Mirrors George Town project. It probably the largest of the murals painted by Zacharevic in George Town.');		
+		else if (id == 20)
+		$("#art-body").html('Shade Me If You Love Me is a piece of temporary art which installed along Victoria Street. The art installation includes a mural of cat prints and a wire cat sculpture. It is the 5th piece of art in the 101 Lost Kittens project created by ASA, Artists for Stray Animals.<br /><br/>Shade Me If You Love M depicts an umbrella over eight cat prints. The intention is to create awareness for people to adopt and shelter stray animals, particularly cats.');
+		else if (id == 21)
+		$("#art-body").html('Mama Cat Sculpture is a piece of art in George Town which installed in front of the entrance to ChinaHouse at Victoria Street. It is the final piece of artwork created by Artists for Stray Animals or ASA, as part of the 101 Lost Kittens project.<br /><br />The Mama Cat Sculpture is officially known as "Even If Handicapped, Still Love Me". It is one of the art pieces placed to raise awareness of stray animals and take them off the streets. The Mama Cat Sculpture depicts a disabled cat which is being carted on a trolley.');
+		else if (id == 22)
+		$("#art-body").html('Wo Ai Nee Chinese Malay Indian is a wall mural in George Town, Penang. It graces the side wall of the I-Box Museum of Glass along Armenian Street. The mural was done in stages and was completed around September, 2013. <br /><br />It depicts three girls, a Chinese, a Malay and an Indian, dressed in exquisite finery. The title of the mural means "I love you, Chinese, Malay and Indian". ');
+		else if (id == 23)
+		$("#art-body").html('Little Blue Kitty is a small blue-coloured kitten painted  at the corner of the wall above the Bruce Lee cat mural. The kitten seems to be pondering the ill fortune of the two larger kittens being given a flying kick by the kungfu legend.');
+		else if (id == 24)
+		$("#art-body").html('No Animal Discrimination Please is one of a murals painted by ASA, Artists for Stray Animals. It is one of the eleven pieces of art created for the project called 101 Lost Kittens, in conjunction with George Town Festival 2013.<br /><br />The "No Animal Discrimination Please" mural graces the back wall of Edelweiss Cafe, which faces Soo Hong Lane. The mural is supposed to promote equal treatment for pets, be they cats or dogs. It depicts three stencil cats walking over a colour-blind pattern of a dog.');
+		else if (id == 25)
+		$("#art-body").html('Children At Play is a set of two murals in George Town, Penang. The murals are painted on the interior wall of a shophouse at 43A Acheen Street. They depict a total of five children. The paintings are deliberately child-like, as though children were involved in painting them.<br /><br/>43A Acheen Street was built over a narrow lane that was once known as Pepper Lane, or Lorong Lada, as it once led to the warehouse belonging to Tengku Syed Hussain, the main property owner in the area in the early 19th century. A wooden gate was constructed to the entrance, which now leads to an ensemble of urban village houses.');
+		else if (id == 26)
+		$("#art-body").html('Cats & Humans Happily Living Together is a mural created by ASA, Artists for Stray Animals. It is the 9th piece of art created for the 101 Lost Kittens project. It graces the side wall of the Cheah Kongsi.<br /><br />The "Cats & Humans Happily Living Together" mural depicts the procession of Taoist deities through the streets of George Town.  In this mural, people are replaced by cats carrying banners, lanterns and religious paraphernalia, with the sedan chair bearing effigies of the deities following from behind.');
+		else if (id == 27)
+		$("#art-body").html('Nostalgic Meal Order is a mural by Penang artist Louis Gan, which grace on the wall of Pinang\'s Pinang along Kinta Lane in George Town, Penang.<br/><br/>Nostalgic Meal Order showa young Nyonya maiden receive a meal of noodles by basket from the hawker on the street below. The scene recalls life in George Town of the early 20th century, when upper-crust Nyonyas lived cloistered from public view, and conducted their meal shopping via baskets in which they place the cash inside. The hawker places usually wantan mee or Hokkien mee into the basket along with the change. ');
+		else 
+		$("#art-body").html('NOT AVAILABLE');
+}
+function OS(id, state){
+		bindss();
+		
+		id = parseInt(id);
+		var n = 0;
+		/*if (state == 'left' && swipe == true){
+		
+					
+					swipe = false;
+					var image = $("#image"); 
+					image.animate({left:'-=100%'}, 250,	
+					function() {
+					image.attr('src', "images/"+id+".jpg");
+					image.css('left', '100%');
+					image.animate({left:'-=100%'}, 250);
+					});
+		
+					var title = $("#art-title"); 
+					title.animate({left:'-=100%', opacity:'0'}, 250,	
+					function() {
+					getTitle(id);
+					title.css('left', '100%');
+					title.animate({left:'-=100%',opacity:'100'}, 250);
+					});
+		
+					var body = $("#art-body"); 
+					body.animate({left:'-=100%',opacity:'0'}, 250,	
+					function() {
+					getBody(id);
+					body.css('left', '100%');
+					body.animate({left:'-=100%',opacity:'100'}, 250, function(){
+					swipe = true;
+					});
+					});
+		
+		}*/
+		
+		
+		if (state == 'left' && swipe == true){
+			$(".container").append("<img id='image2' src = 'images/"+id+".jpg' class='full-image2' />");
+						
+					swipe = false;
+					var image = $("#image"); 
+					var image2 = $("#image2");
+					
+					image.animate({left:'-=100%'}, 500);
+					
+					image2.animate({left:'0%'}, 500,
+					function(){
+					image.remove();
+					image2.attr('class', 'full-image');
+					image2.attr('id', 'image');	
+					bindss();					
+					});
+		
+					var title = $("#art-title"); 
+					title.animate({left:'-=100%', opacity:'0'}, 500,	
+					function() {
+					getTitle(id);
+					title.css('left', '100%');
+					title.animate({left:'-=100%',opacity:'1'}, 500);
+					});
+		
+					var body = $("#art-body"); 
+					body.animate({left:'-=100%',opacity:'0'}, 750,	
+					function() {
+					getBody(id);
+					body.css('left', '100%');
+					body.animate({left:'-=100%',opacity:'1'}, 750, function(){
+					swipe = true;
+
+					});
+					});
+		
+		}
+		
+		
+		
+		
+		
+		else if (state == 'right' && swipe == true)
+		{	
+		$(".container").append("<img id='image2' src = 'images/"+id+".jpg' class='full-image2' />");
+		
+		if (state == 'right'){
+		$('#image2').css('left', '-100%');
+		}
+		
+		swipe = false;
+		var image = $("#image"); 
+		var image2 = $("#image2");
+		image.animate({left:'+=100%'}, 500);
+		
+
+					image2.animate({left:'0%'}, 500,
+					function(){
+					image.remove();
+					image2.attr('class', 'full-image');
+					image2.attr('id', 'image');	
+					bindss();					
+					});		
+			
+		
+		
+		var title = $("#art-title"); 
+		title.animate({left:'+=100%', opacity:'0'}, 500,	
+		function() {
+		getTitle(id);
+		title.css('left', '-100%');
+		title.animate({left:'+=100%', opacity:'1'}, 500);
+		});
+		
+		var body = $("#art-body"); 
+		
+		body.animate({left:'+=100%', opacity:'0'}, 750,	
+		function() {
+		getBody(id);
+		body.css('left', '-100%');
+		body.animate({left:'+=100%', opacity:'1'}, 750, function(){
+					swipe = true;
+
+					});
+		});
+		}
+
+
+}		
+	getTitle(id);		
+	getBody(id);
+
+
+</script>
+
+</html>

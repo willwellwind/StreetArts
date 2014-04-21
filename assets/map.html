@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<link rel="stylesheet" type="text/css" href="main.css">
+<link rel="stylesheet" href="animations.css">
+<link rel="stylesheet" type="text/css" href="WDCsmall.css">
+<link rel="stylesheet" type="text/css" href="map.css">
+<script src="WDCsmall.js"></script>
+<script src="innercommon.js"></script>
+<script src="jquery-1.10.1.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=0.7,  maximum-scale=6.0">
+</head>
+
+<body id = 'body' style="background-color: white;">
+<div class="map-container">
+<img src="map.svg" class="map"/>
+<img class="loc" id="myloc" src="myloc.svg" />
+<span class ="test"> apple </span>
+</div>
+
+</body>
+<script>
+
+var Xs=[100.338239,100.336493,100.338891,0,100.339076,100.338727,100.338824,0,100.338915, 100.339738, 100.340546, 100.337877,100.333086, 100.339140, 100.335774, 100.338732, 100.340602, 100.340696,100.33377,100.338655, 100.339446,100.33752,100.338867, 100.337952, 100.336876,100.33862,100.326762];
+var Ys=[5.414705,5.414814,5.415378,0,5.415559,5.414211,5.414235,0,5.414136,5.414993,5.413869,5.415057,5.420304,5.413613,5.419778,5.413981,5.414243,5.414283,5.421332,5.413487,5.414056,5.415306,5.41557,5.415287,5.414238,5.415063,5.415573];
+
+function showMyLocation(x, y){
+x=x-10;
+y=y-10;
+var d = document.getElementById('myloc');
+d.style.left = y+'px';
+d.style.top = x+'px';
+Visible('myloc');
+
+}
+
+
+function changeLocation(x,y, x2, y2){
+$(".test").html("latitude: "+x+", longitude: "+y+"<br />x= "+x2+", y="+y2);
+
+x2=x2-10;
+y2=y2-10;
+var d = document.getElementById('myloc');
+d.style.left = y2+'px';
+d.style.top = x2+'px';
+}
+
+function showLocation(x,y, x2, y2){
+$(".test").html("latitude: "+x+", longitude: "+y+"<br />x= "+x2+", y="+y2);
+
+}
+
+function getY(y){
+if(y==0)
+return 0;
+return parseInt((parseFloat(y)-5.424414)*-1*58217.8294);
+}
+
+function getX(x){
+if (x==0)
+return 0;
+return parseInt((parseFloat(x)-100.325679)*1*57970.6407);
+}
+
+for ( var i = 1; i < 29; i++){
+$(".map-container").append("<img id='"+i+"'src ='map_pin.svg' onclick=Android.getDialog("+i+") class='push'/>");
+$("#"+i).css("position", "absolute");
+$("#"+i).css("left", getX(Xs[i-1])-5);
+$("#"+i).css("top", getY(Ys[i-1])-5);
+}
+</script>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<link rel="stylesheet" type="text/css" href="main.css">
+<link rel="stylesheet" href="animations.css">
+<link rel="stylesheet" type="text/css" href="WDCsmall.css">
+<script src="WDCsmall.js"></script>
+<script src="innercommon.js"></script>
+<script src="jquery-1.10.1.min.js"></script>
+</head>
+
+<body id = 'body'>
+<div class="container">
+	<img id = 'background' src="sun_background.svg" class="main" />
+	<div class="painter-profile">
+	painter's profile
+	</div>	
+	<div class='painter-profile-content2'>
+	<div id = 'painter' class = "painter-name">
+	
+	</div>
+	<div id = 'painter-body' class = "painter-info-detail">
+	</div>
+	</div>
+	<img id="portrait" src="portraits/ernest.png" class = "portrait" />
+	<img src= 'about_line.svg' class ='gallery-line' />
+	<img src='painter_line.svg' class='painter-detail-line' />
+	<a id ="back-btn"><img src ="back_btn.svg" class="back-btn push" /></a>
+
+	
+</div>
+
+<script>
+commonReady();
+$(".push").attr("onclick", "Android.triggerSound()");
+var painter = getQueryVariable('painter');
+var painterName="";
+var painterDetail="";
+var getBack =getQueryVariable('back');
+getBack = parseInt(getBack);
+
+
+$("#back-btn").click(function(){  
+	parent.history.back();
+	Android.setArt(getBack);
+});
+
+
+
+if (painter == 'ernest')
+{
+	$("#painter").html('ernest zacharevic');
+	$("#painter-body").html('A young Lithuania-born artist who is "making a scene" on the streets of George Town, Penang. This comes in the form of beautifully executed wall paintings, or murals, at selected streets in the inner city. The project, known as Mirrors George Town, is part of George Town Festival 2012.<br /><br />Ernest Zacharevic\'s wall paintings in George Town include figure 	drawings and portraitures that celebrate the exuberance of life in the inner city.');
+}
+else if (painter == 'louis')
+{
+	$("#portrait").attr("src", "portraits/louis.png");
+	$("#painter").html('louis gan');
+	$("#painter-body").html('Louis Gan is a deaf-mute self-taught artist from Penang. According to his brother Yee Chun, Louis was born deaf because his mother had German measles when she conceived him.<br /><br />Today Louis is a freelance artist. He uses watercolor and acrylic as his preferred medium, but would be keen to explore doing oil paintings from time to time. Louis gained local attention after he painted the mural Brother and Sister on a Swing. This came about when the owner of SBS (Sin Ban Seong) Paper Press asked him to paint the back wall of the printing factory. He learned about Louis after The Star and Kwong Wah featured the young artist.');
+}
+else if (painter == 'wall')
+{
+	$("#painter").html('wall team art');
+	$("#painter-body").html('The Wall Art Team is a group of artists and art students who have done a few pieces of street art in Penang. The team was created by Bowie Low of IBox Glass. The Wall Art Team specialises in 3D art. One of their first projects was the Hungry Snake floor mural painted on the floor at the Penang Youth Park. The team also did the 3D waterfall at Youth Park.<br /><br />Within George Town, the Wall Art Team is working on "Penang: Past, Present, Future", a series of murals showcasing various aspects of Penang.');
+}
+else if (painter == 'artists')
+{	$("#portrait").attr("src", "portraits/artist.png");
+	$("#painter").html('artists for stray animal');
+	$("#painter-body").html('101 Lost Kittens is a project by a group of artists working to install a dozen street art at various points within the George Town UNESCO World Heritage Site. The group comprises Tang Yeok Khang of Bukit Mertajam, Natthaton Muangkliang of Thailand and Louise Low of Kuala Lumpur. The idea behind 101 Lost Kittens is to create more awareness over the issue of helping find homes for stray animals. Under the name  Artists for Stray Animals or short term ASA, the project has since come under the auspices of the George Town Festival 2013.<br /><br />The 101 Lost Kittens project endeavours to help stray animals by generating interest through mural hunting and online contests via Facebook.');
+}
+else
+{
+	$("#painter").html('ERROR999999');
+	$("#painter-body").html('ERROR999999');
+}
+	
+</script>
+</body>
+
+
+</html>
