@@ -42,9 +42,16 @@ public class WebAppInterface extends Activity {
     
 
     @JavascriptInterface
+    public void callMap(String id){
+    	
+    	this.parentActivity.mapIntent(Integer.parseInt(id));
+    }
+    
+    @JavascriptInterface
     public void callMap(){
     	this.parentActivity.mapIntent();
     }
+    
     @JavascriptInterface
     public void getArt(){
 

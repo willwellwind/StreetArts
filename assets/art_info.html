@@ -35,7 +35,7 @@
 	<img id='l1' src='art_info_line.svg' class ='art-info-line1'/>
 	<img id='l2' src='art_info_line.svg' class ='art-info-line2'/>
 	<img id='back_button'  src="back_btn_day.svg" class = 'art-info-back push' />
-	<a href='#' onclick="Android.callMap()"><img id='map_button' src="map_btn_day.svg" class = 'art-info-map push' /></a>
+	<a href='#' id="map"><img id='map_button' src="map_btn_day.svg" class = 'art-info-map push' /></a>
 	<a id ="painter-btn" href='painter.html'><img id='pallate_button' src="pallate_btn_day.svg" class = 'art-info-pallate push' /></a>
 	
 </div>
@@ -58,6 +58,11 @@ $("#back_button").click(function(){
 	parent.history.back();
 });
 
+function setMap(){
+$("#map").attr("onclick", "Android.callMap("+id+")");
+}
+
+setMap();
 	id = parseInt(id);
 function setPainter(){
 
@@ -123,6 +128,7 @@ $("#image").swipe( {
 		  id=id+1;
           OS(id,'left');
 		  setPainter();
+		  setMap();
 		  }
 					
         },
@@ -132,6 +138,7 @@ $("#image").swipe( {
 		  id=id-1;
           OS(id, 'right');
 		  setPainter();
+		  setMap();
 		  }
 				
         }

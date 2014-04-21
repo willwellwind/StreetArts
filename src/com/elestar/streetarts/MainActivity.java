@@ -215,14 +215,13 @@ public class MainActivity extends Activity {
 	}
 	
 	public void mapIntent(int id){
-		
 		Intent intent = new Intent(this, Map.class);
 		intent.putExtra("ID", id);
 		startActivity(intent);
+		//Toast.makeText(getApplicationContext(), id+"", Toast.LENGTH_LONG).show();
 	}
 	public void mapIntent(){
-		
-		Intent intent = new Intent(this, Map.class);
+		Intent intent = new Intent(this, Map.class);		
 		startActivity(intent);
 	}	
 	public void playClick(){

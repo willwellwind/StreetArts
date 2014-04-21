@@ -20,15 +20,19 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.Settings;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnSystemUiVisibilityChangeListener;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,7 +49,7 @@ public class Map extends Activity implements LocationListener{
 	Boolean gpsEnabled;
 	private LocationManager locationManager;
 	private String provider;
-	
+	int opopo;
 	@SuppressWarnings("static-access")
 	@SuppressLint({ "SetJavaScriptEnabled", "NewApi" })
 	@Override
@@ -79,10 +83,56 @@ public class Map extends Activity implements LocationListener{
 
 		gpsEnabled=false;
 		getLocation();
-		 // Get the location manager
+	
+		Bundle extras = getIntent().getExtras();
+		if (extras != null){
 			
+			opopo = extras.getInt("ID");
+			webview.loadUrl("file:///android_asset/map.html?id="+opopo);
+		    disp(opopo);
+		    
+		    
+		}
+		
+		getWindow().getDecorView()
+        .setSystemUiVisibility(
+        		webview.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | webview.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        | webview.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        | webview.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                        | webview.SYSTEM_UI_FLAG_FULLSCREEN
+                        | webview.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                        );
+		
+		// register a listener for when the navigation bar re-appears
 
+		getWindow().getDecorView().setOnSystemUiVisibilityChangeListener(
 
+		new OnSystemUiVisibilityChangeListener() {
+
+		public void onSystemUiVisibilityChange(int visibility) {
+
+		if (visibility == 0) {
+
+		// the navigation bar re-appears, let¡¯s hide it
+
+		// after 2 seconds
+
+		mHideHandler.postDelayed(mHideRunnable, 2000);
+
+		}
+
+		}
+
+		});
+
+		ImageButton backButton = (ImageButton)this.findViewById(R.id.mapBackButton);
+		backButton.setOnClickListener(new OnClickListener() {
+		  @Override
+		  public void onClick(View v) {
+		    finish();
+		  }
+		});
 	}
 	
 	private final class CancelOnClickListener implements
@@ -252,10 +302,12 @@ public class Map extends Activity implements LocationListener{
 		   webview.loadUrl("javascript:changeLocation("+location.getLatitude()+", "+location.getLongitude()+", "+convertedLat(location.getLatitude())+", "+convertedLong(location.getLongitude())+")");
 	   //}
 	  else{
-		  Toast.makeText(this, "You are outside the range of the map.",Toast.LENGTH_SHORT).show();
+		  //Toast.makeText(this, "You are outside the range of the map.",Toast.LENGTH_SHORT).show();
 		   //webview.loadUrl("javascript:changeLocation("+location.getLatitude()+", "+location.getLongitude()+", "+convertedLat(location.getLatitude())+", "+convertedLong(location.getLongitude())+")");
-		   webview.loadUrl("javascript:showLocation("+location.getLatitude()+", "+location.getLongitude()+", "+convertedLat(location.getLatitude())+", "+convertedLong(location.getLongitude())+")");
-	   }
+		  // webview.loadUrl("javascript:showLocation("+location.getLatitude()+", "+location.getLongitude()+", "+convertedLat(location.getLatitude())+", "+convertedLong(location.getLongitude())+")");
+		   Toast.makeText(this, location.getLatitude()+", "+location.getLongitude()+", "+convertedLat(location.getLatitude())+", "+convertedLong(location.getLongitude()),Toast.LENGTH_SHORT).show();
+	  }
+
 	  }
 
 	  @Override
@@ -348,6 +400,37 @@ public class Map extends Activity implements LocationListener{
 
 	  }
 	  
+	  @SuppressLint("NewApi")
+		private void hideSystemUi() {
 
+			getWindow().getDecorView().setSystemUiVisibility(
+
+			View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+
+			| View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+
+			| View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+
+			| View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+
+			| View.SYSTEM_UI_FLAG_FULLSCREEN
+
+			| View.SYSTEM_UI_FLAG_IMMERSIVE);
+
+			}
+		
+		Handler mHideHandler = new Handler();
+
+		Runnable mHideRunnable = new Runnable() {
+
+		@Override
+
+		public void run() {
+
+		hideSystemUi();
+
+		}
+
+		};
 
 }

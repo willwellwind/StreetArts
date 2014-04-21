@@ -12,6 +12,7 @@
         android:layout_below="@+id/imageView1"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
+        android:gravity="center"
         android:text="wh there]"
         android:textSize="20sp" />
 
@@ -24,8 +25,7 @@
         android:layout_marginTop="14dp"
         android:adjustViewBounds="true"
         android:maxHeight="200dp"
-        android:maxWidth="200dp"
-        android:src="@drawable/i1" />
+        android:maxWidth="200dp" />
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -49,7 +49,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:minWidth="128dip"
-            android:text="Go" />
+            android:text="Go"
+            android:textSize="20sp" />
 
         <View
             android:layout_width="1px"
@@ -63,7 +64,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:minWidth="128dip"
-            android:text="Cancel" />
+            android:text="Cancel"
+            android:textSize="20sp" />
+
     </LinearLayout>
 
     <View
