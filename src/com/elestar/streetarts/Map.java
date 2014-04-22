@@ -299,8 +299,9 @@ public class Map extends Activity implements LocationListener{
 	  @Override
 	  public void onLocationChanged(Location location) {
 	   if(convertedLat(location.getLatitude()) <= 832 && convertedLat(location.getLatitude()) >= 0 && convertedLong(location.getLongitude()) >= 0 &&convertedLong(location.getLongitude()) <= 1203)
-		   webview.loadUrl("javascript:changeLocation("+location.getLatitude()+", "+location.getLongitude()+", "+convertedLat(location.getLatitude())+", "+convertedLong(location.getLongitude())+")");
-	   //}
+	   { webview.loadUrl("javascript:changeLocation("+location.getLatitude()+", "+location.getLongitude()+", "+convertedLat(location.getLatitude())+", "+convertedLong(location.getLongitude())+")");
+	   	   webview.loadUrl("javascript:$('#myloc').show()");
+	   }
 	  else{
 		  //Toast.makeText(this, "You are outside the range of the map.",Toast.LENGTH_SHORT).show();
 		   //webview.loadUrl("javascript:changeLocation("+location.getLatitude()+", "+location.getLongitude()+", "+convertedLat(location.getLatitude())+", "+convertedLong(location.getLongitude())+")");

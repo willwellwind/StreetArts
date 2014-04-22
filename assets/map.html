@@ -27,7 +27,7 @@ function chosen(id){
 	$("#"+id).attr("src", "map_pin_red.svg");
 	
 }
-
+$("#myloc").hide();
 var h=$(window).height()/832;
 var w=$(window).width()/1203;
 
@@ -78,10 +78,12 @@ return parseInt((parseFloat(x)-100.325679)*1*57970.6407);
 }
 
 for ( var i = 1; i < 29; i++){
+if (Xs[i-1] > 0){
 $(".map-container").append("<img id='"+i+"'  src ='map_pin.svg' onclick=Android.getDialog("+i+") class='push'/>");
 $("#"+i).css("position", "absolute");
 $("#"+i).css("left", getX(Xs[i-1])-5);
 $("#"+i).css("top", getY(Ys[i-1])-5);
+}
 }
 
 chosen(aa);

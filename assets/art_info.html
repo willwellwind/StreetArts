@@ -59,7 +59,10 @@ $("#back_button").click(function(){
 });
 
 function setMap(){
-$("#map").attr("onclick", "Android.callMap("+id+")");
+var sd = id;
+if ( sd == 4 || sd == 8)
+sd = '';
+$("#map").attr("onclick", "Android.callMap("+sd+")");
 }
 
 setMap();
@@ -203,7 +206,7 @@ function getTitle(id){
 		else if (id == 27)
 		$("#art-title").html('Nostalgic Meal Order');
 		else 
-		$("#art-title").html('NOT AVAILABLE');
+		$("#art-title").html('');
 }
 
 function getBody(id){
@@ -262,7 +265,7 @@ function getBody(id){
 		else if (id == 27)
 		$("#art-body").html('Nostalgic Meal Order is a mural by Penang artist Louis Gan, which grace on the wall of Pinang\'s Pinang along Kinta Lane in George Town, Penang.<br/><br/>Nostalgic Meal Order showa young Nyonya maiden receive a meal of noodles by basket from the hawker on the street below. The scene recalls life in George Town of the early 20th century, when upper-crust Nyonyas lived cloistered from public view, and conducted their meal shopping via baskets in which they place the cash inside. The hawker places usually wantan mee or Hokkien mee into the basket along with the change. ');
 		else 
-		$("#art-body").html('NOT AVAILABLE');
+		$("#art-body").html('');
 }
 function OS(id, state){
 		bindss();

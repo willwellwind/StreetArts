@@ -226,7 +226,7 @@ public class MainActivity extends Activity {
 	}	
 	public void playClick(){
 		audioManager.playSoundEffect(SoundEffectConstants.CLICK);
-		v.vibrate(50);
+		v.vibrate(20);
 	}
 
 }
